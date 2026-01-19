@@ -16,6 +16,9 @@ q = int(p.recvline().strip().decode(), 16)
 p.recvuntil(b"Flag Ciphertext (hex): ")
 flag = int(p.recvline().strip().decode(), 16)
 
+n=p*q
+phi = (p-1)*(q-1)
+d=pow(e,-1,phi)
 pt = pow(flag, e, p*q)
 
 print(pt)
