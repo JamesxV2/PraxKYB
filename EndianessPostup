@@ -1,0 +1,5 @@
+Pri analýze výzvy /challenge/cimg som sa zameral na správnu interpretáciu biteov:
+Nález: V zadaní bol uvedený hexadecimálny kód, ktorý po dekódovaní do ASCII obsahoval kľúčové slovo „little“.
+Pointa: Toto slovo signalizovalo, že systém očakáva dáta v architektúre little-endian (menej významný bajt na nižšej adrese).
+Riešenie: Bajty som do súboru zapísal v opačnom poradí (reverznom), čím som zabezpečil správnu interpretáciu číselných hodnôt.
+Výsledok: Úloha bola úspešne vyriešená a príznak (flag) získaný.
