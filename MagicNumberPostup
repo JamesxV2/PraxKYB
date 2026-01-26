@@ -1,0 +1,4 @@
+Pri vytváraní validného .cimg súboru som narazil na chybu "incorrect magic number".
+Pôvodná chyba: Použitie klasického reťazca cez echo, ktorý program neakceptoval ako správny 4-biteový header.
+Riešenie: Analýzou zadania som zistil, že /challenge/cimg vyžaduje magic number v binárnom formáte (b"").
+Výsledok: Po zmene zápisu na surové bajty (binary mode) bol súbor example.cimg úspešne načítaný.
