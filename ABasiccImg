@@ -1,0 +1,30 @@
+Parametre:
+    header = file.read1(18)
+    assert len(header) == 18, "ERROR: Failed to read header!"
+    assert header[:4] == b"cIMG", "ERROR: Invalid magic number!"
+    assert int.from_bytes(header[4:8], "little") == 2, "ERROR: Invalid version!"
+    width = int.from_bytes(header[8:16], "little")
+    assert width == 73, "ERROR: Incorrect width!"
+    height = int.from_bytes(header[16:18], "little")
+    assert height == 20, "ERROR: Incorrect height!"
+    data = file.read1(width * height * 4)
+    assert len(data) == width * height * 4, "ERROR: Failed to read data!"
+    if nonspace_count != 1460:
+    asu_maroon = (0x8C, 0x1D, 0x40)
+
+Kod:
+#!/bin/python
+from pwn import *
+
+with open("example.cimg", "wb") as file:
+    file.write(b"cIMG") 
+    file.write((2).to_bytes(4, "little"))
+    file.write((73).to_bytes(8, "little")) 
+    file.write((20).to_bytes(2, "little"))
+
+    r = 0x8C
+    g = 0x1D
+    b = 0x40
+    
+    for _ in range(73 * 20):
+        file.write(bytes([r, g, b, ord('X')]))
