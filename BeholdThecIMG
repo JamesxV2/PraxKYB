@@ -1,0 +1,22 @@
+Parametre:
+    header = file.read1(20)
+    assert len(header) == 20, "ERROR: Failed to read header!"
+    assert header[:4] == b"cIMG", "ERROR: Invalid magic number!"
+    assert int.from_bytes(header[4:12], "little") == 1, "ERROR: Invalid version!"
+    width = int.from_bytes(header[12:16], "little")
+    height = int.from_bytes(header[16:20], "little")
+    if nonspace_count != 275:
+
+Kod:
+
+#!/bin/python
+from pwn import *
+
+with open("example.cimg", "wb") as file:
+    width = 25
+    height = 11
+    file.write(b"cIMG")  
+    file.write((1).to_bytes(8, "little"))  
+    file.write(width.to_bytes(4, "little"))  
+    file.write(height.to_bytes(4, "little"))  
+    file.write((width * height) * b"X")
